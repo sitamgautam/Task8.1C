@@ -2,11 +2,14 @@ package com.example.chatbot;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.*;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.Call;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://<YOUR_BACKEND_URL>/";
+
+    private static final String BASE_URL = "http://10.0.2.2:5000/";
     private static Retrofit retrofit;
 
     public static ApiService getApiService() {
@@ -20,8 +23,9 @@ public class ApiClient {
     }
 
     public interface ApiService {
+        @Headers("Content-Type: application/json")
         @POST("chat")
-        @FormUrlEncoded
-        Call<String> sendMessage(@Field("message") String message);
+        Call<String> sendMessage(@Body Message message);
     }
 }
+
