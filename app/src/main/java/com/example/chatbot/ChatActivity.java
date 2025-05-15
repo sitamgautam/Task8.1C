@@ -22,7 +22,6 @@ public class ChatActivity extends AppCompatActivity {
     Button sendButton;
     TextView chatDisplay;
 
-    // Increase timeout to avoid bot timeout errors
     OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
@@ -81,7 +80,6 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    // Replace the last "Bot is typing..." with the real message or error
     private void replaceLastBotMessage(String newBotMessage) {
         String currentText = chatDisplay.getText().toString();
         int lastIndex = currentText.lastIndexOf("Bot: " + TYPING_PLACEHOLDER);
